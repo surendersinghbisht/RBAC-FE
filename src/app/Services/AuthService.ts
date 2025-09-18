@@ -33,8 +33,6 @@ export class AuthService {
 
   private baseUrl = 'https://localhost:7069/api/Auth'; 
 
-  
-
   constructor(private http: HttpClient) { } 
 
   decodeToken(token: string):JwtPayload | null {

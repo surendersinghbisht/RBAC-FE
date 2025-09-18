@@ -102,7 +102,6 @@ console.log('edit address',address, index)
       addressId: address.addressId
     });
     console.log('updating address',this.form.value.addresses[0])
-
       this.onCountryChange(address.countryId);
   this.onStateChange(address.stateId);
 

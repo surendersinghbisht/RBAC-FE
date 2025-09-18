@@ -1,0 +1,59 @@
+ 
+  <img
+  style="position: fixed;"
+    src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    alt="Background"
+    class="bg-image"
+  />
+<div class="announcements-container">
+
+  <h2>📢 Announcements</h2>
+
+  <form [formGroup]="form" (ngSubmit)="createAnnouncements()">
+    <div formArrayName="announcements">
+      <div
+        class="announcement-form"
+        *ngFor="let announcement of announcements.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <input formControlName="title" placeholder="Title" />
+        <textarea formControlName="message" placeholder="Message"></textarea>
+
+        <div class="card-actions">
+          <!-- <button type="button" class="btn btn-primary">
+            ✏ Edit
+          </button> -->
+          <button type="button" class="btn btn-danger" (click)="announcements.removeAt(i)">
+            🗑 Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="addAnnouncement()">
+        ➕ Add Another
+      </button>
+      <button type="submit" class="btn btn-success">💾 Save All</button>
+    </div>
+  </form>
+
+  <div class="announcement-list" *ngIf="allAnnouncements.length > 0">
+    <div class="announcement-card" *ngFor="let a of allAnnouncements; let i = index">
+      <h3>Title: {{ a.title }}</h3>
+      <p>Message: {{ a.message }}</p>
+      <small>Created At: {{ a.createdAt | date: 'medium' }}</small>
+
+      <div class="card-actions">
+        <button type="button" class="btn btn-primary" >
+          ✏ Edit
+        </button>
+        <button type="button" class="btn btn-danger"
+        (click)="deleteAnnouncement(a.announcementId, i)"
+        >
+          🗑 Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

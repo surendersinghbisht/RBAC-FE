@@ -7,6 +7,7 @@ import { AuthGuard } from './AuthGaurd/AuthGaurd';
 import { Register } from './Pages/register/register';
 import { Settings } from './Pages/settings/settings';
 import { Details } from './Pages/details/details';
+import { AddAnnouncements } from './Pages/add-announcements/add-announcements';
 
 export const routes: Routes = [
   {
@@ -45,6 +46,10 @@ component: Settings
   {
     path: 'register',
     component: Register
+  },
+  {
+path: 'add-announcement',
+component: AddAnnouncements
   },
   {
     path: '**',
