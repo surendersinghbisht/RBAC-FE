@@ -1,0 +1,60 @@
+<div class="all-addresses-container" >
+    <img src="https://images.unsplash.com/photo-1619392553201-3d9ab3169271?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Background Image" class="bg-image">
+  <h2 *ngIf="AllAddresses.length > 0" style="color: black; font-family: Georgia, 'Times New Roman', Times, serif; font-size: xx-large;">Existing Addresses</h2>
+  <div *ngFor="let address of AllAddresses; let i = index" class="address-card">
+    <p><strong>Country:</strong> {{ address.country }}</p>
+    <p><strong>State:</strong> {{ address.state }}</p>
+    <p><strong>City:</strong> {{ address.city }}</p>
+
+    <div class="address-actions">
+      <button type="button" class="edit-btn" (click)="editAddress(address, i)">✏ Edit</button>
+      <button type="button" class="delete-btn" (click)="deleteAddress(address.addressId, i)">🗑 Delete</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-container">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="address-form" #addressFormContainer >
+
+    <h2 class="form-title">Add Address Details</h2>
+
+    <div formArrayName="addresses">
+      <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i" class="address-block">
+        
+        <h3 class="block-title">Address {{ i + 1 }}</h3>
+
+        <label for="country-{{i}}">Country</label>
+        <select id="country-{{i}}" formControlName="country" 
+                (change)="onCountryChange(address.value.country)">
+          <option value="">Select Country</option>
+          <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+        </select>
+
+        <label for="state-{{i}}">State</label>
+        <select id="state-{{i}}" formControlName="state" 
+                (change)="onStateChange(address.value.state)">
+          <option value="">Select State</option>
+          <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+        </select>
+
+        <label for="city-{{i}}">City</label>
+        <select id="city-{{i}}" formControlName="city">
+          <option value="">Select City</option>
+          <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+        </select>
+
+        <button type="button" class="remove-btn" (click)="addresses.removeAt(i)" *ngIf="addresses.length > 1">
+          ✖ Remove
+        </button>
+      </div>
+    </div>
+
+    <div class="form-actions" *ngIf="!isEditing">
+      <button type="button" class="add-btn" (click)="addNewAddress()">+ Add Another Address</button>
+      <button type="submit" class="submit-btn">Save All</button>
+    </div>
+    <button type="button" class="submit-btn" (click)="updateAddress()" *ngIf="isEditing">Update Address</button>
+
+  </form>
+</div>

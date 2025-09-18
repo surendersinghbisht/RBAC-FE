@@ -1,0 +1,45 @@
+<div class="dashboard-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">{{user?.userName}}</div>
+    <ul class="nav-links">
+      <li><a routerLink="/user-dashboard" routerLinkActive="active" routerLink="/location-details">My Address</a></li>
+      <li><a routerLink="/tasks" routerLinkActive="active">My Tasks</a></li>
+      <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+      <li><a (click)="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="dashboard-header">
+      <h2>Welcome, {{ userName }}</h2>
+    </header>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+      <div class="card">
+        <h3>Total Tasks</h3>
+        <p>{{ totalTasks || 0 }}</p>
+      </div>
+      <div class="card">
+        <h3>Completed</h3>
+        <p>{{ completedTasks || 0 }}</p>
+      </div>
+      <div class="card">
+        <h3>Pending</h3>
+        <p>{{ pendingTasks || 0 }}</p>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="recent">
+      <h3>Recent Activity</h3>
+      <ul>
+        <li *ngFor="let activity of recentActivities">
+          {{ activity }}
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>

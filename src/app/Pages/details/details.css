@@ -1,0 +1,200 @@
+/* Full page layout */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+}
+
+/* Existing addresses section */
+.all-addresses-container {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.all-addresses-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.address-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Center the form on the page */
+.page-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+/* Form card */
+.address-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 500px;
+  max-width: 95%;
+}
+
+/* Form title */
+.form-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Each address block */
+.address-block {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  background: #f9f9f9;
+}
+
+.block-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #444;
+}
+
+.address-block label {
+  display: block;
+  margin-top: 0.6rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.address-block select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+/* Remove button */
+.remove-btn {
+  margin-top: 0.8rem;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.remove-btn:hover {
+  background: #e60000;
+}
+
+/* Form action buttons */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.add-btn, .submit-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-btn {
+  background: #eee;
+}
+
+.add-btn:hover {
+  background: #ddd;
+}
+
+.submit-btn {
+  background: #2575fc;
+  color: white;
+}
+
+.submit-btn:hover {
+  background: #1259c3;
+}
+
+
+.address-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.edit-btn, .delete-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #3e8e41;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+
+  /* Fixed background image */
+  /* background: url('assets/bg-image.jpg') no-repeat center center fixed; */
+  background-size: cover;
+}
+
+
+.page-container {
+  position: relative;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bg-image {
+  position: fixed;       /* fixed relative to viewport */
+  top: 0;
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.8;
+}

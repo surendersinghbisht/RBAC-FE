@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <div class="navbar-logo">My Dashboard</div>
+  <div class="navbar-links" style="font-size: larger; font-family: Arial, Helvetica, sans-serif;">
+    <a routerLink="/location-details">My Address</a>
+    <a routerLink="/settings">Settings</a>
+  </div>
+  <div class="navbar-user">
+    <span>Welcome, {{ userDetails?.userName }}</span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="dashboard-container">
+
+  <div class="user-info-card">
+    <h2>Welcome, {{ userDetails?.userName }}</h2>
+    <p>Email: {{ userDetails?.email }}</p>
+  </div>
+
+  <h3>All Users</h3>
+  <div class="users-list">
+    <div *ngFor="let user of users" class="user-card">
+      <div class="user-info">
+        <p class="username">{{ user.userName }}</p>
+        <p class="email">{{ user.email }}</p>
+        <p>Role: {{ user.role }}</p>
+      </div>
+      <div class="user-actions">
+        <select [(ngModel)]="user.role">
+          <option value="User">User</option>
+          <option value="Admin">Admin</option>
+        </select>
+        <button (click)="updateUserRole(user)">Update Role</button>
+      </div>
+    </div>
+  </div>
+</div>

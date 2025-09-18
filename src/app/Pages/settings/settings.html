@@ -1,0 +1,22 @@
+<div class="settings-container">
+  <h2>Settings</h2>
+
+  <ul>
+    <li>
+      <a href="/change-password" class="settings-link">
+        🔒 Change Password
+      </a>
+    </li>
+    <li>
+      <a (click)="enable2FA(true)" class="settings-link">
+        🛡️ Enable 2FA
+      </a>
+    </li>
+  </ul>
+
+  <div class="logout-container">
+    <button (click)="logout()" class="logout-btn">
+      Logout
+    </button>
+  </div>
+</div>

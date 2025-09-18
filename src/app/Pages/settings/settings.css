@@ -1,0 +1,79 @@
+/* Container */
+.settings-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.settings-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1f2937;
+}
+
+/* Links */
+.settings-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.settings-container ul li {
+  margin-bottom: 1rem;
+}
+
+.settings-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.settings-link:hover {
+  background-color: #bfdbfe;
+  transform: translateY(-2px);
+}
+
+/* Logout Button */
+.logout-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.logout-btn {
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .settings-container {
+    padding: 1.5rem;
+  }
+
+  .settings-container h2 {
+    font-size: 1.5rem;
+  }
+}
