@@ -8,6 +8,7 @@ import { Register } from './Pages/register/register';
 import { Settings } from './Pages/settings/settings';
 import { Details } from './Pages/details/details';
 import { AddAnnouncements } from './Pages/add-announcements/add-announcements';
+import { AssignTask } from './Pages/assign-task/assign-task';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ component: Settings
   {
 path: 'add-announcement',
 component: AddAnnouncements
+  },
+  {
+    path: 'assign-tasks',
+    component: AssignTask
   },
   {
     path: '**',

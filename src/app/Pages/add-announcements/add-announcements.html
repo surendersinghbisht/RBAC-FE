@@ -9,7 +9,7 @@
 
   <h2>📢 Announcements</h2>
 
-  <form [formGroup]="form" (ngSubmit)="createAnnouncements()">
+  <form [formGroup]="form" (ngSubmit)="createAnnouncements()" #announcementFormContainer>
     <div formArrayName="announcements">
       <div
         class="announcement-form"
@@ -23,7 +23,7 @@
           <!-- <button type="button" class="btn btn-primary">
             ✏ Edit
           </button> -->
-          <button type="button" class="btn btn-danger" (click)="announcements.removeAt(i)">
+          <button *ngIf="!isEditing" type="button" class="btn btn-danger" (click)="announcements.removeAt(i)">
             🗑 Delete
           </button>
         </div>
@@ -31,11 +31,12 @@
     </div>
 
     <div class="form-actions">
-      <button type="button" class="btn btn-secondary" (click)="addAnnouncement()">
+      <button *ngIf="!isEditing" type="button" class="btn btn-secondary" (click)="addAnnouncement()">
         ➕ Add Another
       </button>
-      <button type="submit" class="btn btn-success">💾 Save All</button>
+      <button *ngIf="!isEditing" type="submit" class="btn btn-success">💾 Save All</button>
     </div>
+        <button *ngIf="isEditing" type="button" class="submit-btn" (click)="updateAnnouncement()">💾 Save Edited Data</button>
   </form>
 
   <div class="announcement-list" *ngIf="allAnnouncements.length > 0">
@@ -45,7 +46,7 @@
       <small>Created At: {{ a.createdAt | date: 'medium' }}</small>
 
       <div class="card-actions">
-        <button type="button" class="btn btn-primary" >
+        <button type="button" class="btn btn-primary" (click)="editAnnouncement(a, i)" >
           ✏ Edit
         </button>
         <button type="button" class="btn btn-danger"

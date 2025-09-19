@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 export interface Announcement {
     title: string;
-    content: string;
+    message: string;
     createdBy: string;
     createdAt?: Date;
 }
@@ -36,6 +36,26 @@ private baseUrl = 'https://localhost:7069/api/Announcement';
       deleteAnnouncement(announcementId: number): Observable<any> {
         return this.http.delete(`${this.baseUrl}/delete-announcement/${announcementId}`);
       } 
+
+      editAnnouncement(updatedAnnouncement: any): Observable<any> {
+        let data = {
+          announcementId : updatedAnnouncement.announcementId,
+          title: updatedAnnouncement.title,
+          message: updatedAnnouncement.message,
+        }
+        return this.http.put(`${this.baseUrl}/edit-announcement`, data);
+      }
+
+      GetAllAnnouncementsForUser(): Observable<any> {
+        const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
+        return this.http.get(`${this.baseUrl}/all-announcemets-forusers/${userId}`);
+      }
+
+      markAsRead(): Observable<any> {
+        const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
+        console.log('mark as read userId', userId);
+        return this.http.post(`${this.baseUrl}/markAsRead`, {userId});
+      }
 }
 
 // https://localhost:7069/api/Announcement/add-announcement

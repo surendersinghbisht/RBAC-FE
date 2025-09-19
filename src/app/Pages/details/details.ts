@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import LocationService from '../../Services/LocationService';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-details',
@@ -19,7 +20,8 @@ export class Details implements OnInit {
  isEditing: boolean = false;
   constructor(
     private locationService: LocationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
   ) { 
         this.form = this.fb.group({
         addresses: this.fb.array([])
@@ -37,6 +39,16 @@ export class Details implements OnInit {
    this.loadCountries();
  this.addNewAddress();  
   }
+
+  showSnack(message: string, type: 'success' | 'error' | 'delete') {
+  this.snackBar.open(message, 'Close', {
+    duration: 3000,
+    horizontalPosition: 'right',
+    verticalPosition: 'top',
+    panelClass: [`${type}-snackbar`]
+  });
+}
+
 
   addNewAddress() {
     this.addresses.push(this.fb.group({
@@ -78,12 +90,12 @@ export class Details implements OnInit {
     this.locationService.deleteAddress(addressid).subscribe({
       next: (res) => {
            this.AllAddresses.splice(index, 1);
-        alert(res.message);
+        this.showSnack('🗑️ Deleted Successfully!', 'delete');
         this.form.reset();
       },
       error: (err) => {
         console.error('Error deleting address', err);
-        alert('Failed to delete address. Please try again.');
+       this.showSnack('Failed to delete address. Please try again.', 'error');
       }
     });
   }
@@ -128,7 +140,7 @@ console.log('edit address',address, index)
     this.locationService.editAddress(this.form.value.addresses[0]).subscribe({
 
       next: (res) => {
-        alert('Address updated successfully!');
+        this.showSnack('✅ Updated Successfully!', 'success');
           this.locationService.getAllAddresses().subscribe(res => {
       this.AllAddresses = res;
       console.log(this.AllAddresses);
@@ -149,7 +161,7 @@ console.log('edit address',address, index)
     console.log(this.form.value.addresses);
     this.locationService.addAddress(this.form.value.addresses).subscribe({
       next: (res) => {
-        alert('Address added successfully!');
+        this.showSnack('✅ Added Successfully!', 'success');
        this.locationService.getAllAddresses().subscribe(res => {
       this.AllAddresses = res;
       console.log(this.AllAddresses);

@@ -1,14 +1,48 @@
 <div class="dashboard-container">
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">{{user?.userName}}</div>
-    <ul class="nav-links">
-      <li><a routerLink="/user-dashboard" routerLinkActive="active" routerLink="/location-details">My Address</a></li>
-      <li><a routerLink="/tasks" routerLinkActive="active">My Tasks</a></li>
-      <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
-      <li><a (click)="logout()">Logout</a></li>
-    </ul>
-  </nav>
+<nav class="navbar">
+  <div class="logo">{{user?.userName}}</div>
+  <ul class="nav-links">
+<li class="notification" (click)="toggleNotifications()">
+  <a>
+    <i class="fas fa-bell"></i>
+    <span class="badge" *ngIf="notificationCount > 0">{{ notificationCount }}</span>
+  </a>
+
+  <!-- Notification dropdown -->
+<div class="notification-dropdown" *ngIf="showNotifications">
+  <h4>Notifications</h4>
+  <ul>
+    <li *ngFor="let notif of notifications">
+      <span class="notif-title">{{ notif.title }}</span>
+      <span class="notif-message">{{ notif.message }}</span>
+      <span class="notif-date">{{ notif.createdAt | date:'short' }}</span>
+    </li>
+    <li *ngIf="notifications.length === 0">No new notifications</li>
+  </ul>
+  <button (click)="markAllAsRead()">Mark as Read</button>
+</div>
+
+</li>
+
+
+
+    <li>
+      <a routerLink="/location-details" routerLinkActive="active">My Address</a>
+    </li>
+    <li>
+      <a routerLink="/tasks" routerLinkActive="active">My Tasks</a>
+    </li>
+    <li>
+      <a routerLink="/settings" routerLinkActive="active">Settings</a>
+    </li>
+   
+    <li>
+      <a (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</nav>
+
 
   <!-- Main Content -->
   <main class="main-content">

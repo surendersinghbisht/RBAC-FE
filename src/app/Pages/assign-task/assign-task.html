@@ -1,0 +1,56 @@
+<body>
+  <section class="task-form-container">
+    <h2>Assign Task</h2>
+    <form [formGroup]="form" (ngSubmit)="assignTask()">
+      <div class="form-group">
+        <input type="text" id="title" formControlName="title" placeholder=" " required />
+        <label for="title">Task Title</label>
+      </div>
+
+      <div class="form-group">
+        <textarea id="description" formControlName="description" placeholder=" " rows="4" required></textarea>
+        <label for="description">Task Description</label>
+      </div>
+
+      <div class="form-group">
+        <input type="date" id="dueDate" formControlName="dueDate" placeholder=" " required />
+        <label for="dueDate">Due Date</label>
+      </div>
+
+      <div class="form-group">
+        <select id="assignedUser" formControlName="assignedTo" required>
+          <option value="" disabled selected hidden></option>
+          <option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</option>
+        </select>
+        <label for="assignedUser">Assign To</label>
+      </div>
+
+      <button type="submit" class="btn-primary">Assign Task</button>
+    </form>
+  </section>
+
+  <section class="assigned-tasks">
+    <h3>Assigned Tasks</h3>
+    <div class="task-grid">
+      <div class="task-card" *ngFor="let task of assignedTasks">
+        <div class="task-header">
+          <strong class="task-title">{{ task.title }}</strong>
+          <span class="task-status {{ TaskStatus[task.status] }}">
+            {{ TaskStatus[task.status] || task.status }}
+          </span>
+        </div>
+
+        <p class="task-desc">{{ task.description }}</p>
+        <p class="task-assigned">Assigned To: <strong>{{ task.assignedTouserName }}</strong></p>
+        <small class="task-date">Created On: {{ task.createdOn | date:'yyyy-MM-dd' }}</small>
+
+        <div class="task-actions">
+          <button type="button" class="btn-edit" (click)="editTask(task)">Edit</button>
+          <button type="button" class="btn-delete" (click)="deleteTask(task.taskId)">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="assignedTasks.length === 0" class="no-tasks">No tasks assigned</p>
+  </section>
+</body>

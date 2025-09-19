@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IdentityUserDto, UserService } from '../../Services/UserService';
+import { AddAnnouncementService } from '../../Services/AnnouncementService';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,21 +22,55 @@ export class UserDashboard implements OnInit {
     'Pending Task: API integration'
   ];
 
-  constructor(private router: Router, private userService: UserService) {}
+  showNotifications = false;
+  notifications: any[] = [];
+  notificationCount = this.notifications.length;
 
-user?:IdentityUserDto;
+  user?: IdentityUserDto;
+
+  constructor(private router: Router, private userService: UserService,
+    private anouncementService: AddAnnouncementService
+  ) {}
 
   ngOnInit() {
     this.userService.getMyDetails().subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
-      console.log('User details:', user);
       this.userName = user.userName;
-      console.log('User details:', user);
-      this.user = user
-    })
+      this.user = user;
+    });
+
+    this.getAllAnnouncements();
   }
+
+  getAllAnnouncements() {
+    this.anouncementService.GetAllAnnouncementsForUser().subscribe((res) => {
+      console.log('announcements for user', res);
+      this.notifications = res;
+      this.notificationCount = this.notifications.length;
+    });
+  }
+
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+ 
+  toggleNotifications() {
+    this.showNotifications = !this.showNotifications;
+  }
+
+  clearNotifications() {
+    this.notifications = [];
+    this.notificationCount = 0;
+    this.showNotifications = false;
+  }
+
+  markAllAsRead() {
+   
+    this.anouncementService.markAsRead().subscribe(() => {
+     this.getAllAnnouncements();
+      this.clearNotifications();
+    });
   }
 }

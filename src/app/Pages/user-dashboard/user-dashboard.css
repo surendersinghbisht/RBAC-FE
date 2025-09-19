@@ -35,7 +35,35 @@
   text-decoration: underline;
 }
 
-/* Main */
+/* Notification Bell */
+.navbar .notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar .notification i {
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar .notification i:hover {
+  color: #f1c40f;
+}
+
+.navbar .notification .badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Main Content */
 .main-content {
   padding: 20px;
 }
@@ -69,4 +97,100 @@
 .recent li {
   padding: 8px 0;
   border-bottom: 1px solid #ddd;
+}
+
+/* Notification Dropdown */
+.notification-dropdown {
+  position: absolute;
+  top: 40px; /* below bell */
+  right: 0;
+  width: 400px;              /* larger popup */
+  max-height: 450px;         /* max height */
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  z-index: 1000;
+  padding: 15px;
+  overflow-y: auto;          /* scroll if content too large */
+  font-family: Arial, sans-serif;
+}
+
+.notification-dropdown h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.notification-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-dropdown li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  word-wrap: break-word;
+}
+
+.notification-dropdown li:last-child {
+  border-bottom: none;
+}
+
+/* Notification Content Formatting */
+.notification-dropdown li .notif-title {
+  font-weight: bold;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.notification-dropdown li .notif-message {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.notification-dropdown li .notif-date {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Clear Button */
+.notification-dropdown button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/* Notification Content Formatting */
+.notification-dropdown li .notif-title {
+  font-weight: bold;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px; /* space below title */
+}
+
+.notification-dropdown li .notif-message {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 5px; /* space below message */
+  color: #555;
+}
+
+.notification-dropdown li .notif-date {
+  font-size: 11px;
+  color: #888;
+  display: block; /* ensures it’s on its own line */
+  margin-top: 0px; 
 }
