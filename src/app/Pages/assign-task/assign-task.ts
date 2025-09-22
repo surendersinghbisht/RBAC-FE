@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, viewChild } from '@angular/core';
 import { UserService } from '../../Services/UserService';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import TaskService from '../../Services/TaskService';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 export enum TaskStatus {
   Pending = 0,
   Done = 1,
@@ -17,6 +18,9 @@ export enum TaskStatus {
   styleUrl: './assign-task.css'
 })
 export class AssignTask implements OnInit {
+@ViewChild('formcontainer', { static: false })
+formcontainer!: ElementRef;
+isEdited:boolean = false;
   TaskStatus = TaskStatus;
 assignedTasks: any[] = [];
 users: any[] = [];
@@ -44,7 +48,8 @@ ngOnInit() {
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
       dueDate: [''],
-      assignedTo: ['', [Validators.required]]
+      assignedTo: ['', [Validators.required]],
+      taskId: [0]
     });
     
   this.userservice.getAllUsers().subscribe((res) => {
@@ -57,7 +62,7 @@ this.getAllTasksByAdmin();
 }
 
 getAllTasksByAdmin() {
-  this.taskService.GetAllTaskByAdmin().subscribe({
+  this.taskService.GetAllTaskByLoggedInuser().subscribe({
     next: (res) => {
       console.log('res', res);
       this.assignedTasks = res;
@@ -77,13 +82,18 @@ this.taskService.addTask(this.form.value).subscribe((res) => {
 }
 
 editTask(task:any){
+  this.isEdited = true;
   this.form.patchValue({
+      taskId: task.taskId,
       title: task.title,
       description: task.description,
       dueDate: task.dueDate ? task.dueDate.split('T')[0] : '',
       assignedTo: task.assignedToId
   });
-   console.log('form value', this.form.value);
+   setTimeout(() => {
+    this.formcontainer.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+
 }
 
 deleteTask(taskId: number) {
@@ -95,5 +105,19 @@ deleteTask(taskId: number) {
     error: (err) => console.error(err)
   })
 }
+
+updateTask(){
+  console.log(this.form.value);
+  this.taskService.updateTask(this.form.value).subscribe({
+    next: (res) => {
+      this.showSnack("Task updated successfully", "success");
+      this.isEdited = false;
+      this.form.reset();
+      this.getAllTasksByAdmin();
+    },
+    error: (err) => console.error(err)
+  })
+}
+
 }
 

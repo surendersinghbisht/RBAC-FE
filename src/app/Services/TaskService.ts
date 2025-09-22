@@ -33,12 +33,45 @@ export default class TaskService {
             return this.http.post(`${this.baseUrl}/create-task`, taskData);
         }
 
-        GetAllTaskByAdmin(): Observable<any> {
-            const adminId = JSON.parse(localStorage.getItem('user') || '{}').id;
-            return this.http.get(`${this.baseUrl}/get-task-admin/${adminId}`);
+        GetAllTaskByLoggedInuser(): Observable<any> {
+            const loggenInUserId = JSON.parse(localStorage.getItem('user') || '{}').id;
+            return this.http.get(`${this.baseUrl}/get-tasks/${loggenInUserId}`);
         }
 
         deleteTask(taskId: number): Observable<any> {
             return this.http.delete(`${this.baseUrl}/delete-task/${taskId}`);
         }
+
+        updateTask(editedData: any):Observable<any> {
+            let data = {
+                taskId: editedData.taskId,
+                assignedToId: editedData.assignedTo,
+                dueDate: editedData.dueDate,
+                title: editedData.title,
+                description: editedData.description
+            }
+            console.log(editedData)
+         return this.http.put(`${this.baseUrl}/edit-task`, data);
+}
+
+getTasksByStatus(status: string): Observable<any> {
+
+  const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
+  return this.http.get(`${this.baseUrl}/user-tasks-by-status`,{
+    params: {
+       userId,       
+       status
+    }
+  });
+}
+
+updateStatus(taskId: number, status: string): Observable<any> {
+ const statusMap: any = { 'Pending': 0, 'Done': 2, 'Working': 1 };
+  console.log('status', status, taskId);
+  let data = {
+   taskId,
+  status: statusMap[status]
+  }
+  return this.http.put(`${this.baseUrl}/update-task-status`, data);
+}
 }

@@ -1,7 +1,7 @@
 <body>
-  <section class="task-form-container">
+  <section class="task-form-container" >
     <h2>Assign Task</h2>
-    <form [formGroup]="form" (ngSubmit)="assignTask()">
+    <form [formGroup]="form" (ngSubmit)="assignTask()" #formcontainer>
       <div class="form-group">
         <input type="text" id="title" formControlName="title" placeholder=" " required />
         <label for="title">Task Title</label>
@@ -25,8 +25,9 @@
         <label for="assignedUser">Assign To</label>
       </div>
 
-      <button type="submit" class="btn-primary">Assign Task</button>
+      <button *ngIf="!isEdited" type="submit" class="btn-primary">Assign Task</button>
     </form>
+          <button *ngIf="isEdited" class="btn-edit" (click)="updateTask()">Save Edit Task</button>
   </section>
 
   <section class="assigned-tasks">
