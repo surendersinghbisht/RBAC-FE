@@ -74,4 +74,9 @@ updateStatus(taskId: number, status: string): Observable<any> {
   }
   return this.http.put(`${this.baseUrl}/update-task-status`, data);
 }
+
+getRecentActivities(): Observable<any> {
+  const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
+  return this.http.get(`${this.baseUrl}/recent-activities/${userId}`);
+}
 }

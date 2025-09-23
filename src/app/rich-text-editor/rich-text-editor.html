@@ -1,0 +1,5 @@
+<!-- app.component.html -->
+
+<ckeditor [editor]="Editor" [config]="config"  [(ngModel)]="editorData">></ckeditor>
+<h3>Editor Content:</h3>
+<div [innerHTML]="editorData"></div>

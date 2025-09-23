@@ -15,15 +15,13 @@
     <li *ngFor="let notif of notifications">
       <span class="notif-title">{{ notif.title }}</span>
       <span class="notif-message">{{ notif.message }}</span>
-      <!-- <span class="notif-date">{{ notif.createdAt | date:'short' }}</span> -->
+  
     </li>
     <li *ngIf="notifications.length === 0">No new notifications</li>
   </ul>
   <button (click)="markAllAsRead()">Mark as Read</button>
 </div>
-
 </li>
-
 
 
     <li>
@@ -116,17 +114,27 @@
   </div>
 </section>
 
+  <section class="recent">
+  <h3>Recent Activity</h3>
+  <ul>
+    <li *ngFor="let activity of recentActivities" [ngClass]="activity.status">
+      <span class="activity-icon">
+        <i class="fa-solid fa-circle"></i>
+      </span>
+      <span class="activity-content">
+        <strong>{{ activity.name }}</strong>: {{ activity.message }}
+        <span class="activity-date">{{ activity.createdAt | date:'short' }}</span>
+      </span>
+    </li>
+    <li *ngIf="recentActivities.length === 0" class="no-activity">
+      No recent activity
+    </li>
+  </ul>
+</section>
 
-
-
-
-    <section class="recent">
-      <h3>Recent Activity</h3>
-      <ul>
-        <li *ngFor="let activity of recentActivities">
-          {{ activity }}
-        </li>
-      </ul>
-    </section>
   </main>
 </div>
+<h2>CKEditor Example</h2>
+
+
+

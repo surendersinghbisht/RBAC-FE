@@ -9,6 +9,7 @@ import { Settings } from './Pages/settings/settings';
 import { Details } from './Pages/details/details';
 import { AddAnnouncements } from './Pages/add-announcements/add-announcements';
 import { AssignTask } from './Pages/assign-task/assign-task';
+import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor';
 
 export const routes: Routes = [
   {
@@ -55,6 +56,10 @@ component: AddAnnouncements
   {
     path: 'assign-tasks',
     component: AssignTask
+  },
+  {
+    path: 'template',
+    component: RichTextEditorComponent
   },
   {
     path: '**',

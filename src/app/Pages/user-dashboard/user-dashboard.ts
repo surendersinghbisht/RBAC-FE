@@ -15,6 +15,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
   imports: [CommonModule, RouterLink, FormsModule, FontAwesomeModule]
 })
 export class UserDashboard implements OnInit {
+
    faBell = faBell;
   userName = '';
   totalTasks = 12;
@@ -27,11 +28,7 @@ export class UserDashboard implements OnInit {
   status:'Pending'
 };
 
-  recentActivities: string[] = [
-    'Completed Task: Fix login bug',
-    'Submitted Task: Dashboard design',
-    'Pending Task: API integration'
-  ];
+  recentActivities: any[] = [];
 
   showNotifications = false;
   notifications: any[] = [];
@@ -60,7 +57,7 @@ export class UserDashboard implements OnInit {
       }
     })
 this.getAllAnnouncements();
-
+this.getRecentActivities();
     this.userService.getMyDetails().subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.userName = user.userName;
@@ -82,6 +79,12 @@ this.getTasks();
   }
 }
 
+getRecentActivities() {
+  this.taskService.getRecentActivities().subscribe((res) => {
+    this.recentActivities = res;
+    console.log('recent activities', this.recentActivities);
+  });
+}
 
   getTasks(){
     
@@ -111,6 +114,7 @@ console.log('working tasks', this.workingTasks);
   onStatusChange(task: any) {
     this.taskService.updateStatus(task.taskId, task.status).subscribe(() => {
       this.getTasks();
+      this.getRecentActivities();
     });
   }
 

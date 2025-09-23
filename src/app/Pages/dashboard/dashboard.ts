@@ -3,8 +3,7 @@ import { IdentityUserDto, UserService } from '../../Services/UserService';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { Settings } from "../settings/settings";
-import { LoginComponent } from "../login/login";
+
 
 
 @Component({
