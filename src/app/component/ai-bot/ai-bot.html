@@ -1,0 +1,22 @@
+<button class="ai-toggle-btn" (click)="togglePopup()">
+  💬 Chat with AI
+</button>
+
+
+<div class="ai-popup" [class.open]="isOpen">
+  <div class="ai-header">
+    <span>AI Chat Bot</span>
+    <button class="close-btn" (click)="togglePopup()">×</button>
+  </div>
+
+  <div class="ai-messages">
+    <div *ngFor="let msg of messages" [ngClass]="{'user': msg.from === 'user', 'bot': msg.from === 'bot'}">
+      <div class="message-bubble">{{ msg.text }}</div>
+    </div>
+  </div>
+
+  <div class="ai-input">
+    <input [(ngModel)]="userInput" placeholder="Type a message..." (keydown.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

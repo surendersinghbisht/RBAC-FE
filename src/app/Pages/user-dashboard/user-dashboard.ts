@@ -7,12 +7,13 @@ import TaskService from '../../Services/TaskService';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { AiBot } from "../../component/ai-bot/ai-bot";
 
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.html',
   styleUrls: ['./user-dashboard.css'],
-  imports: [CommonModule, RouterLink, FormsModule, FontAwesomeModule]
+  imports: [CommonModule, RouterLink, FormsModule, FontAwesomeModule, AiBot]
 })
 export class UserDashboard implements OnInit {
 

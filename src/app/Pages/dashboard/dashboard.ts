@@ -3,13 +3,14 @@ import { IdentityUserDto, UserService } from '../../Services/UserService';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AiBot } from "../../component/ai-bot/ai-bot";
 
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.html',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, AiBot],
   styleUrls: ['./dashboard.css']
 })
 export class Dashboard implements OnInit {
