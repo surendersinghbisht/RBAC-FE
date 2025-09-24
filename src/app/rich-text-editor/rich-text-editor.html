@@ -1,5 +1,22 @@
-<!-- app.component.html -->
+<div class="template-buttons">
+  <button (click)="setBirthdayTemplate()">🎂 Birthday Template</button>
+  <button (click)="setAnniversaryTemplate()">💍 Anniversary Template</button>
+  <button (click)="setNewTaskTemplate()">📝 New Task Template</button>
+</div>
 
-<ckeditor [editor]="Editor" [config]="config"  [(ngModel)]="editorData">></ckeditor>
-<h3>Editor Content:</h3>
-<div [innerHTML]="editorData"></div>
+<div class="form-group">
+  <label for="recipient">Recipient Email:</label>
+  <input
+    id="recipient"
+    type="email"
+    [(ngModel)]="toEmail"
+    placeholder="Enter recipient email"
+  />
+</div>
+
+<ckeditor [editor]="Editor" [config]="config" [(ngModel)]="editorData"></ckeditor>
+
+<button class="send-btn" (click)="sendEmail()">📧 Send Email</button>
+
+<h3 class="preview-title">Editor Content Preview:</h3>
+<div class="editor-preview" [innerHTML]="editorData"></div>

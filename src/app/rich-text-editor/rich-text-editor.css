@@ -1,4 +1,90 @@
 /* app.component.css */
 
 @import 'ckeditor5/ckeditor5.css';
+/* Template Buttons */
+.template-buttons {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
+.template-buttons button {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.template-buttons button:hover {
+  background-color: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+/* Input + Label */
+.form-group {
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.form-group input[type="email"]:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Send Button */
+.send-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #10b981;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send-btn:hover {
+  background-color: #059669;
+}
+
+/* Preview Section */
+.preview-title {
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+.editor-preview {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fafafa;
+  margin-top: 10px;
+}

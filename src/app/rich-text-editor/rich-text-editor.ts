@@ -7,6 +7,11 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ClassicEditor, Bold, Essentials, Italic, Paragraph, Underline
   ,Strikethrough,Link, BlockQuote, 
  } from 'ckeditor5';
+ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import {BIRTHDAY_EMAIL_TEMPLATE, NEW_TASK_EMAIL_TEMPLATE, WORK_ANNOUNCEMENT_TEMPLATE,
+  BIRTHDAY_SUBJECT,ANNIVERSARY_SUBJECT,NEW_TASK_SUBJECT
+} from '../Email-templates'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component( {
     selector: 'rich-text-editor',
@@ -17,21 +22,29 @@ import { ClassicEditor, Bold, Essentials, Italic, Paragraph, Underline
     standalone: true
 } )
 export class RichTextEditorComponent {
+
+  constructor(
+      private snackBar: MatSnackBar
+  ) {}
+
+   showSnack(message: string, type: 'success' | 'error' | 'delete') {
+  this.snackBar.open(message, 'Close', {
+    duration: 3000,
+    horizontalPosition: 'right',
+    verticalPosition: 'top',
+    panelClass: [`${type}-snackbar`]
+  });
+}
     title = 'angular';
+   birthdayEmail = BIRTHDAY_EMAIL_TEMPLATE;
+   newTaskEmail = NEW_TASK_EMAIL_TEMPLATE;
+   workAnnouncement = WORK_ANNOUNCEMENT_TEMPLATE;
+         userName = 'John Doe';
+  otpCode = '123456';
+     toEmail = ''; 
+   subject = 'New Task Assigned';
 editorData = `
-<div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
-  <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 8px;">
-    <h2 style="text-align:center; color:#333;">Your OTP Code</h2>
-    <p>Hi {{userName}},</p>
-    <p>Use the following One-Time Password (OTP) to complete your login or verify your action:</p>
-    <p style="text-align:center; font-size: 24px; font-weight: bold; color:#007bff; margin: 20px 0;">
-      {{otpCode}}
-    </p>
-    <p>This code will expire in <strong>5 minutes</strong>. Do not share this code with anyone.</p>
-    <p>If you did not request this, you can safely ignore this email.</p>
-    <p style="font-size:12px; color:#888; text-align:center;">&copy; 2025 My Company. All rights reserved.</p>
-  </div>
-</div>
+<p>Hello, world!</p>
 `;
     public Editor = ClassicEditor;
     public config = {
@@ -47,4 +60,39 @@ editorData = `
       'highlight', 'removeFormat'
     ]
     }
+
+      sendEmail() {
+       const templateParams = {
+      to_email: this.toEmail,
+      subject: this.subject,
+      message: this.editorData
+    };
+ console.log(templateParams);
+
+this.showSnack('Email sent successfully', 'success');
+   return emailjs.send(
+      'service_uo11tdn',       // your EmailJS service ID
+      'template_a18nfjp',   // template ID in EmailJS (with {{message_html}})
+     templateParams,
+      'THuDm_75Djq8mab80'           // your public key
+    );
+
+  }
+
+
+  setBirthdayTemplate() {
+    this.editorData = this.birthdayEmail;
+    this.subject = BIRTHDAY_SUBJECT
+  }
+
+  setAnniversaryTemplate() {
+    this.editorData = this.workAnnouncement;
+    this.subject = ANNIVERSARY_SUBJECT
+  }
+
+  setNewTaskTemplate() {
+    this.editorData = this.newTaskEmail;
+    this.subject = NEW_TASK_SUBJECT
+  }
+  
 }
