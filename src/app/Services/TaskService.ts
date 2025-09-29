@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import {Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { BASE_URL } from "../../api";
 
 export interface Task {
 Title: string;
@@ -16,7 +17,7 @@ DueDate:Date;
 
 export default class TaskService {
 
-    private baseUrl = 'https://localhost:7069/api/UserTask';
+  private baseUrl = `${BASE_URL}/UserTask`;
         constructor(private http: HttpClient) { }
 
         addTask(data: any): Observable<any> {

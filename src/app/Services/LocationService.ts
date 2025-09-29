@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { BASE_URL } from "../../api";
 
 export interface Address {
 userId: string;
@@ -16,7 +17,8 @@ export default class LocationService {
 
 
      constructor(private http: HttpClient) { } 
-    private baseUrl = 'https://localhost:7069/api/Location';
+          private baseUrl = `${BASE_URL}/Location`
+
 
     getCountries():Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/countries`); 

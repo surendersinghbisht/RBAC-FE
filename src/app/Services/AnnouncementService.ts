@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { BASE_URL } from "../../api";
 
 export interface Announcement {
     title: string;
@@ -12,7 +13,8 @@ export interface Announcement {
   providedIn: 'root'
 })
 export class AddAnnouncementService {
-private baseUrl = 'https://localhost:7069/api/Announcement';  
+      private baseUrl = `${BASE_URL}/Announcement`
+  
     constructor(private http: HttpClient) { 
         
     }

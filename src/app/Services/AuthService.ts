@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { BASE_URL } from '../../api';
 
 interface LoginRequest {
   Email: string;
@@ -31,8 +32,7 @@ interface JwtPayload {
 })
 export class AuthService {
 
-  private baseUrl = 'https://localhost:7069/api/Auth'; 
-
+        private baseUrl = `${BASE_URL}/Auth`
   constructor(private http: HttpClient) { } 
 
   decodeToken(token: string):JwtPayload | null {

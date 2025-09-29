@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { BASE_URL } from '../../api';
 
 interface LoginRequest {
   Email: string;
@@ -31,9 +32,7 @@ export interface IdentityUserDto {
 })
 export class UserService {
 
-  private baseUrl = 'https://localhost:7069/api/User'; 
-
-  
+        private baseUrl = `${BASE_URL}/User`
 
   constructor(private http: HttpClient) { } 
 
