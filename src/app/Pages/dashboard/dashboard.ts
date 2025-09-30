@@ -33,9 +33,6 @@ export class Dashboard implements OnInit {
 
   }
 
-
-
-
 logout() {
   localStorage.removeItem('token');
   localStorage.removeItem('userId');

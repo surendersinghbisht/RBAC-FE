@@ -1,200 +1,289 @@
-/* Full page layout */
-body, html {
+/* Global resets and base styles */
+* {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f0f2f5;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Existing addresses section */
+body {
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+  color: #1f2937;
+  line-height: 1.6;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+/* All Addresses Container */
 .all-addresses-container {
-  max-width: 600px;
-  margin: 2rem auto;
-}
-
-.all-addresses-container h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.address-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* Center the form on the page */
-.page-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-}
-
-/* Form card */
-.address-form {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 500px;
-  max-width: 95%;
-}
-
-/* Form title */
-.form-title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-/* Each address block */
-.address-block {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.2rem;
-  background: #f9f9f9;
-}
-
-.block-title {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.8rem;
-  color: #444;
-}
-
-.address-block label {
-  display: block;
-  margin-top: 0.6rem;
-  font-weight: 500;
-  color: #555;
-}
-
-.address-block select {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.3rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
-}
-
-/* Remove button */
-.remove-btn {
-  margin-top: 0.8rem;
-  background: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.remove-btn:hover {
-  background: #e60000;
-}
-
-/* Form action buttons */
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-}
-
-.add-btn, .submit-btn {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.add-btn {
-  background: #eee;
-}
-
-.add-btn:hover {
-  background: #ddd;
-}
-
-.submit-btn {
-  background: #2575fc;
-  color: white;
-}
-
-.submit-btn:hover {
-  background: #1259c3;
-}
-
-
-.address-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-}
-
-.edit-btn, .delete-btn {
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.edit-btn {
-  background: #4caf50;
-  color: white;
-}
-
-.edit-btn:hover {
-  background: #3e8e41;
-}
-
-.delete-btn {
-  background: #f44336;
-  color: white;
-}
-
-.delete-btn:hover {
-  background: #d32f2f;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-
-  /* Fixed background image */
-  /* background: url('assets/bg-image.jpg') no-repeat center center fixed; */
-  background-size: cover;
-}
-
-
-.page-container {
+  max-width: 1280px;
+  margin: 0 auto 40px;
   position: relative;
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 12px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
 .bg-image {
-  position: fixed;       /* fixed relative to viewport */
+  position: absolute;
   top: 0;
-  left: 50%;            /* center horizontally */
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
-  opacity: 0.8;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.all-addresses-container h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.all-addresses-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #7c3aed, #ec4899);
+}
+
+/* Address Card */
+.address-card {
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.address-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.address-card p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+.address-card p strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Address Actions */
+.address-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.edit-btn {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transform: translateY(-2px);
+}
+
+.delete-btn {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  transform: translateY(-2px);
+}
+
+/* Page Container */
+.page-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Address Form */
+.address-form {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #7c3aed, #ec4899);
+}
+
+/* Address Block */
+.address-block {
+  background: linear-gradient(145deg, #f8fafc, #ffffff);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.block-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4c1d95;
+  margin-bottom: 15px;
+}
+
+.address-block label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.address-block select {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
+  font-size: 1rem;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.address-block select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+.address-block select:hover {
+  background: linear-gradient(145deg, #e5e7eb, #f3f4f6);
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.add-btn, .submit-btn, .remove-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  color: #fff;
+}
+
+.add-btn:hover {
+  background: linear-gradient(90deg, #059669, #10b981);
+  transform: translateY(-2px);
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #7c3aed, #db2777);
+  color: #fff;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(90deg, #6d28d9, #be185d);
+  transform: translateY(-2px);
+}
+
+.remove-btn {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  color: #fff;
+}
+
+.remove-btn:hover {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .all-addresses-container, .page-container {
+    padding: 20px;
+  }
+
+  .address-card, .address-block {
+    padding: 15px;
+  }
+
+  .form-actions, .address-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-btn, .submit-btn, .remove-btn, .edit-btn, .delete-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .all-addresses-container h2, .form-title {
+    font-size: 1.5rem;
+  }
+
+  .block-title {
+    font-size: 1.3rem;
+  }
 }

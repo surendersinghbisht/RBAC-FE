@@ -62,6 +62,10 @@ editorData = `
     }
 
       sendEmail() {
+        if(!this.toEmail){
+          this.showSnack('Please enter recipient email', 'error');
+          return;
+        }
        const templateParams = {
       to_email: this.toEmail,
       subject: this.subject,

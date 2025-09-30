@@ -18,7 +18,7 @@
 
     <h2 class="form-title">Add Address Details</h2>
 
-    <div formArrayName="addresses">
+    <div formArrayName="addresses"> 
       <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i" class="address-block">
         
         <h3 class="block-title">Address {{ i + 1 }}</h3>

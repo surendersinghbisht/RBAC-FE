@@ -1,17 +1,18 @@
 /* app.component.css */
 
 @import 'ckeditor5/ckeditor5.css';
-/* Template Buttons */
-/* Container for template buttons */
 .template-buttons {
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
+  margin-left: 10px;
+
 }
 
 .template-buttons button {
   padding: 10px 20px;
   border-radius: 8px;
+  margin-left: 10px;
   border: none;
   background-color: #007bff;
   color: white;
@@ -19,6 +20,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.95rem;
+  margin-top: 80px;
 }
 
 .template-buttons button:hover {
@@ -28,6 +30,7 @@
 
 /* Form group styling */
 .form-group {
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -35,12 +38,16 @@
 }
 
 .form-group label {
+  margin-left: 10px;
+
   margin-bottom: 5px;
   font-weight: bold;
   color: #333;
 }
 
 .form-group input {
+  margin-left: 10px;
+
   padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -56,6 +63,8 @@
 
 /* Send email button */
 .send-btn {
+  margin-left: 10px;
+
   padding: 12px 25px;
   border-radius: 8px;
   border: none;
@@ -75,6 +84,8 @@
 
 /* Preview title */
 .preview-title {
+  margin-left: 10px;
+
   margin-top: 30px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -85,6 +96,8 @@
 
 /* Editor preview box */
 .editor-preview {
+  margin-left: 10px;
+
   margin-top: 15px;
   padding: 20px;
   border-radius: 10px;

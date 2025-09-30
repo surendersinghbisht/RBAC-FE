@@ -96,7 +96,6 @@ getRecentActivities() {
     this.pendingTasks =  res.map((task: any) =>({
 ...task, status: this.mapStatus(task.status)
     }))
-      console.log('pending tasks', this.pendingTasks);
     });
 
 this.taskService.getTasksByStatus('Done').subscribe((res) => {

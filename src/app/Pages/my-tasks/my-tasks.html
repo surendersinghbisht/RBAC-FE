@@ -18,7 +18,6 @@
               <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
               <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
   
-              <!-- Status Badge -->
               <span class="task-status-badge"
                     [ngClass]="{
                       'status-done': task.status === 'Done',
@@ -52,7 +51,6 @@
               <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
               <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
   
-              <!-- Status Badge -->
               <span class="task-status-badge"
                     [ngClass]="{
                       'status-done': task.status === 'Done',
@@ -75,7 +73,6 @@
         </ul>
       </div>
   
-      <!-- Pending Tasks -->
       <div class="task-column">
         <h3>Pending</h3>
         <ul>
@@ -86,7 +83,6 @@
               <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
               <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
   
-              <!-- Status Badge -->
               <span class="task-status-badge"
                     [ngClass]="{
                       'status-done': task.status === 'Done',
@@ -111,7 +107,6 @@
   
     </section>
   
-    <!-- Recent Activity Section -->
     <section class="recent-activity">
       <h3>Recent Activity</h3>
       <ul>
@@ -126,7 +121,6 @@
       </ul>
     </section>
   
-    <!-- AI Bot Section -->
     <app-ai-bot></app-ai-bot>
   </main>
   
