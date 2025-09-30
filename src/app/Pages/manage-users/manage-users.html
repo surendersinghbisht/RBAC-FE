@@ -1,0 +1,20 @@
+ <div class="user-container">
+  <h3>All Users</h3>
+  <div class="users-list">
+    <div *ngFor="let user of users" class="user-card">
+      <div class="user-info">
+        <p class="username">{{ user.userName }}</p>
+        <p class="email">{{ user.email }}</p>
+        <p>Role: {{ user.role }}</p>
+      </div>
+      <div class="user-actions">
+        <select [(ngModel)]="user.role">
+          <option value="User">User</option>
+          <option value="Admin">Admin</option>
+        </select>
+        <button (click)="updateUserRole(user)">Update Role</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-ai-bot></app-ai-bot>

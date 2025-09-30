@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  loading:boolean = false;
   @Input() userD?: string;
   errorMessage: string = '';
   loginForm!: FormGroup;
@@ -29,9 +30,11 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     console.log('Form submitted with:', this.loginForm.value);
+    this.loading = true;
     this.authService.login(this.loginForm.value)
       .subscribe({
         next: (response: LoginResponse) => {
+          this.loading = false;
           if (response.success) {
             console.log('Login successful:', response);
              localStorage.setItem('token', response.token ?? '');
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (err) => {
+          this.loading = false;
           console.error('Login error:', err);
         }
       });

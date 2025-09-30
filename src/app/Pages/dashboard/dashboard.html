@@ -1,11 +1,13 @@
 <nav class="navbar">
   <div class="navbar-logo">My Dashboard</div>
   <div class="navbar-links" style="font-size: larger; font-family: Arial, Helvetica, sans-serif;">
-    <a routerLink="/location-details">My Address</a>
-    <a routerLink="/settings">Settings</a>
-    <a routerLink="/add-announcement">Add Announcments</a>
-        <a routerLink="/assign-tasks">Assign Task</a>
-        <a routerLink="/template">Templates</a>
+    <a routerLink="manage-users" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Manage Users</a>
+    <a routerLink="location-details" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">My Address</a>
+    <a routerLink="add-announcement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Add Announcments</a>
+    <a routerLink="assign-tasks" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Assign Task</a>
+    <a routerLink="template" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Templates</a>
+    <a routerLink="settings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Settings</a>
+
   </div>
   <div class="navbar-user">
     <span>Welcome, {{ userDetails?.userName }}</span>
@@ -13,7 +15,11 @@
   </div>
 </nav>
 
-<div class="dashboard-container">
+<!-- Routed components will load here -->
+<router-outlet></router-outlet>
+
+
+<!-- <div class="dashboard-container">
 
   <div class="user-info-card">
     <h2>Welcome, {{ userDetails?.userName }}</h2>
@@ -37,5 +43,7 @@
       </div>
     </div>
   </div>
-</div>
-<app-ai-bot></app-ai-bot>
+</div> -->
+<!-- <app-ai-bot></app-ai-bot> -->
+
+

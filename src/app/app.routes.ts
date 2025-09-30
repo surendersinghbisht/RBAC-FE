@@ -10,20 +10,13 @@ import { Details } from './Pages/details/details';
 import { AddAnnouncements } from './Pages/add-announcements/add-announcements';
 import { AssignTask } from './Pages/assign-task/assign-task';
 import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor';
-
+import { ManageUsers } from './Pages/manage-users/manage-users';
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
   },
-  {
-path: 'settings',
-component: Settings
-  },
-   {
-        path: 'location-details',
-        component: Details,
-      },
+ 
   {
     path: 'two-factor-auth',
     component: TwoFactorAuthComponent
@@ -32,7 +25,16 @@ component: Settings
     path: 'dashboard',
     component: Dashboard,
     canActivate: [AuthGuard],
-    data: { roles: ['Admin'] }, 
+    data: { roles: ['Admin'] },
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'manage-users' },
+      { path: 'manage-users', component: ManageUsers },
+      { path: 'location-details', component: Details },
+      { path: 'settings', component: Settings },
+      { path: 'add-announcement', component: AddAnnouncements },
+      { path: 'assign-tasks', component: AssignTask },
+      { path: 'template', component: RichTextEditorComponent },
+    ]
   },
   {
     path: 'user-dashboard',
@@ -41,25 +43,8 @@ component: Settings
     data: { roles: ['User'] }  
   },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
     path: 'register',
     component: Register
-  },
-  {
-path: 'add-announcement',
-component: AddAnnouncements
-  },
-  {
-    path: 'assign-tasks',
-    component: AssignTask
-  },
-  {
-    path: 'template',
-    component: RichTextEditorComponent
   },
   {
     path: '**',
