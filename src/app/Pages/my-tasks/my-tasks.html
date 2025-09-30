@@ -1,10 +1,13 @@
 <main class="main-content">
+    <!-- Dashboard Header -->
     <header class="dashboard-header">
       <h2>Welcome, {{ userName }}</h2>
     </header>
   
     <!-- Task Columns Section -->
     <section class="task-lists">
+  
+      <!-- Completed Tasks -->
       <div class="task-column">
         <h3>Completed</h3>
         <ul>
@@ -14,7 +17,18 @@
               <p>{{ task.description }}</p>
               <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
               <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
+  
+              <!-- Status Badge -->
+              <span class="task-status-badge"
+                    [ngClass]="{
+                      'status-done': task.status === 'Done',
+                      'status-working': task.status === 'Working',
+                      'status-pending': task.status === 'Pending'
+                    }">
+                {{ task.status }}
+              </span>
             </div>
+  
             <div class="task-action">
               <select [(ngModel)]="task.status" (change)="onStatusChange(task)">
                 <option value="Done">Completed</option>
@@ -27,6 +41,7 @@
         </ul>
       </div>
   
+      <!-- Working Tasks -->
       <div class="task-column">
         <h3>Working</h3>
         <ul>
@@ -36,7 +51,18 @@
               <p>{{ task.description }}</p>
               <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
               <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
+  
+              <!-- Status Badge -->
+              <span class="task-status-badge"
+                    [ngClass]="{
+                      'status-done': task.status === 'Done',
+                      'status-working': task.status === 'Working',
+                      'status-pending': task.status === 'Pending'
+                    }">
+                {{ task.status }}
+              </span>
             </div>
+  
             <div class="task-action">
               <select [(ngModel)]="task.status" (change)="onStatusChange(task)">
                 <option value="Done">Completed</option>
@@ -49,6 +75,7 @@
         </ul>
       </div>
   
+      <!-- Pending Tasks -->
       <div class="task-column">
         <h3>Pending</h3>
         <ul>
@@ -58,7 +85,18 @@
               <p>{{ task.description }}</p>
               <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
               <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
+  
+              <!-- Status Badge -->
+              <span class="task-status-badge"
+                    [ngClass]="{
+                      'status-done': task.status === 'Done',
+                      'status-working': task.status === 'Working',
+                      'status-pending': task.status === 'Pending'
+                    }">
+                {{ task.status }}
+              </span>
             </div>
+  
             <div class="task-action">
               <select [(ngModel)]="task.status" (change)="onStatusChange(task)">
                 <option value="Pending">Pending</option>
@@ -70,6 +108,7 @@
           <li *ngIf="pendingTasks.length === 0" class="empty-task">No Pending Tasks</li>
         </ul>
       </div>
+  
     </section>
   
     <!-- Recent Activity Section -->
