@@ -11,6 +11,7 @@ import { AddAnnouncements } from './Pages/add-announcements/add-announcements';
 import { AssignTask } from './Pages/assign-task/assign-task';
 import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor';
 import { ManageUsers } from './Pages/manage-users/manage-users';
+import { MyTasks } from './Pages/my-tasks/my-tasks';
 export const routes: Routes = [
   {
     path: 'login',
@@ -40,7 +41,13 @@ export const routes: Routes = [
     path: 'user-dashboard',
     component: UserDashboard,
     canActivate: [AuthGuard],
-    data: { roles: ['User'] }  
+    data: { roles: ['User'] },
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'my-tasks' },
+      { path: 'my-tasks', component: MyTasks },
+      { path: 'settings', component: Settings },
+      { path: 'location-details', component: Details },
+    ]  
   },
   {
     path: 'register',

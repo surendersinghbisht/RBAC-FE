@@ -1,0 +1,93 @@
+<main class="main-content">
+    <header class="dashboard-header">
+      <h2>Welcome, {{ userName }}</h2>
+    </header>
+  
+    <!-- Task Columns Section -->
+    <section class="task-lists">
+      <div class="task-column">
+        <h3>Completed</h3>
+        <ul>
+          <li *ngFor="let task of completedtasks" [ngClass]="getStatusClass(task.status)">
+            <div class="task-info">
+              <h4>{{ task.title }}</h4>
+              <p>{{ task.description }}</p>
+              <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
+              <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
+            </div>
+            <div class="task-action">
+              <select [(ngModel)]="task.status" (change)="onStatusChange(task)">
+                <option value="Done">Completed</option>
+                <option value="Working">Working</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </div>
+          </li>
+          <li *ngIf="completedtasks.length === 0" class="empty-task">No Completed Tasks</li>
+        </ul>
+      </div>
+  
+      <div class="task-column">
+        <h3>Working</h3>
+        <ul>
+          <li *ngFor="let task of workingTasks" [ngClass]="getStatusClass(task.status)">
+            <div class="task-info">
+              <h4>{{ task.title }}</h4>
+              <p>{{ task.description }}</p>
+              <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
+              <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
+            </div>
+            <div class="task-action">
+              <select [(ngModel)]="task.status" (change)="onStatusChange(task)">
+                <option value="Done">Completed</option>
+                <option value="Working">Working</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </div>
+          </li>
+          <li *ngIf="workingTasks.length === 0" class="empty-task">No Working Tasks</li>
+        </ul>
+      </div>
+  
+      <div class="task-column">
+        <h3>Pending</h3>
+        <ul>
+          <li *ngFor="let task of pendingTasks" [ngClass]="getStatusClass(task.status)">
+            <div class="task-info">
+              <h4>{{ task.title }}</h4>
+              <p>{{ task.description }}</p>
+              <p><strong>Assigned By:</strong> {{ task.assignedByuserName }}</p>
+              <p><strong>Due:</strong> {{ task.dueDate | date:'shortDate' }}</p>
+            </div>
+            <div class="task-action">
+              <select [(ngModel)]="task.status" (change)="onStatusChange(task)">
+                <option value="Pending">Pending</option>
+                <option value="Done">Completed</option>
+                <option value="Working">Working</option>
+              </select>
+            </div>
+          </li>
+          <li *ngIf="pendingTasks.length === 0" class="empty-task">No Pending Tasks</li>
+        </ul>
+      </div>
+    </section>
+  
+    <!-- Recent Activity Section -->
+    <section class="recent-activity">
+      <h3>Recent Activity</h3>
+      <ul>
+        <li *ngFor="let activity of recentActivities" [ngClass]="activity.status">
+          <span class="activity-icon"><i class="fa-solid fa-circle"></i></span>
+          <span class="activity-content">
+            <strong>{{ activity.name }}</strong>: {{ activity.message }}
+            <span class="activity-date">{{ activity.createdAt | date:'short' }}</span>
+          </span>
+        </li>
+        <li *ngIf="recentActivities.length === 0" class="no-activity">No recent activity</li>
+      </ul>
+    </section>
+  
+    <!-- AI Bot Section -->
+    <app-ai-bot></app-ai-bot>
+  </main>
+  

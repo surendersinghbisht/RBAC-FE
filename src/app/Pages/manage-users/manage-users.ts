@@ -7,7 +7,7 @@ import { AiBot } from "../../component/ai-bot/ai-bot";
 
 @Component({
   selector: 'app-manage-users',
-  imports: [CommonModule, FormsModule, RouterLink, AiBot, RouterModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, AiBot, RouterModule],
   templateUrl: './manage-users.html',
   styleUrls: ['./manage-users.css']
 })

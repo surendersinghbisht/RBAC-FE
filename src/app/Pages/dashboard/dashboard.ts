@@ -10,7 +10,7 @@ import { AiBot } from "../../component/ai-bot/ai-bot";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.html',
-  imports: [CommonModule, FormsModule, RouterLink, AiBot, RouterModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule, RouterOutlet],
   styleUrls: ['./dashboard.css']
 })
 export class Dashboard implements OnInit {
