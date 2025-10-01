@@ -1,26 +1,8 @@
 <div 
-  class="register-container" 
-  style="
-    background-image: url('https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?_gl=1*v3ww9r*_ga*NTIwMTYxMTcwLjE3NTY3MjUyMjQ.*_ga_8JE65Q40S6*czE3NTY3MjUyMjMkbzEkZzEkdDE3NTY3MjU1MTAkajYwJGwwJGgw'); 
-    background-size: cover; 
-    background-position: center; 
-    height: 100vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-  "
->
+  class="register-container" >
   <form 
     class="register-form" 
     (ngSubmit)="onSubmit()"
-    style="
-      background: rgba(255, 255, 255, 0.75); /* translucent white */
-      padding: 2rem; 
-      border-radius: 10px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
-      width: 100%; 
-      max-width: 400px;
-    "
   >
     <h2 class="form-title">Register</h2>
 
@@ -60,17 +42,9 @@
       >
     </div>
 
-    <button type="submit" class="register-btn" style="
-      width: 100%; 
-      padding: 0.75rem; 
-      background-color: #007bff; 
-      color: #fff; 
-      border: none; 
-      border-radius: 5px; 
-      cursor: pointer;
-    ">Register</button>
+    <button type="submit" class="register-btn" >Register</button>
 
-    <p class="login-link" style="text-align: center; margin-top: 1rem;">
+    <p class="login-link" >
       Already have an account? 
       <a routerLink="/login">Login here</a>
     </p>

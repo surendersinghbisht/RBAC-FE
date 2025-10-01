@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/AuthService';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,9 @@ export class Register {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,
+    private snackBar: MatSnackBar
+    ) {}
 
   onSubmit(): void {
     // if (this.password !== this.confirmPassword) {
@@ -32,13 +35,21 @@ export class Register {
 
     this.authService.register(newUser).subscribe({
       next: (res) => {
-        alert('Registration successful! Please login.');
         console.log('Registration successful:', res);
         this.router.navigate(['/login']);
+        this.snackBar.open('Registration successful!', 'Close', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
       },
       error: (err) => {
         console.error('Registration error:', err);
-        alert('Error registering user');
+        this.snackBar.open('Error registering user', 'Close', {
+          duration: 2000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
       }
     });
   }
